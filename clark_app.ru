@@ -1,8 +1,4 @@
-require 'sinatra/base'
-require 'require_all'
-require 'byebug'
-
-require_all 'app'
+require './config/environment'
 
 class ClarkApp < Sinatra::Base
     

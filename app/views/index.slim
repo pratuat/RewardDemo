@@ -5,3 +5,7 @@ form action='/' method='post' enctype="multipart/form-data" remote=true
     input type='file' name='file'
 
     input type='submit'
+    
+- if @user_points
+    span
+     = @user_points
