@@ -14,6 +14,19 @@ class ClarkApp < Sinatra::Base
     end
     
     action = lambda do
+        
+        if params[:file]
+            events = File.open(params[:file][:tempfile], "r").read.split("\n").map(&:split)
+            
+            events.each do |event|
+                EventProcessorService.call(event, @container)
+            end
+
+            @user_points = @container.list_user_points
+
+            byebug
+        end
+
         slim :index
     end
     
