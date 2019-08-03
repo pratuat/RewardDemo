@@ -9,6 +9,10 @@ class ClarkApp < Sinatra::Base
     set :logging, true
     set :views, 'app/views'
     
+    before do
+        @container = ContainerService.instance
+    end
+    
     action = lambda do
         slim :index
     end
