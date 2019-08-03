@@ -17,16 +17,16 @@ module UserCreationService
         )
 
         if recommender
-            add_recommendationPoints(recommender, 0)
+            add_recommendation_points(recommender, 0)
         end
     end
     
-    def add_recommendationPoints(user, k)
+    def add_recommendation_points(user, k)
         @container.add_points_to_user(user, 1.0/2**k)
         recommender = @container.get_recommender(user)
         
         if recommender
-            add_recommendationPoints(recommender, k+1)
+            add_recommendation_points(recommender, k+1)
         end
     end
 end

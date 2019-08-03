@@ -4,9 +4,8 @@ class User
     def initialize(**params)
         @name = params[:name]
         @created_at = params[:created_at]
-        @recommender = params[:recommender] 
-        
-        @points = 0.0
+        @recommender = params[:recommender]
+        @points = params[:points].to_f || 0.0
     end
     
     def increment_point(inc)

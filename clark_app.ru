@@ -5,13 +5,14 @@ class ClarkApp < Sinatra::Base
     set :logging, true
     set :views, 'app/views'
     
-    before do
-        @container = ContainerService.instance
+    get "/" do
+        slim :index
     end
     
-    action = lambda do
-        
+    post "/" do
         if params[:file]
+            @container = DataContainer.new
+            
             events = File.open(params[:file][:tempfile], "r").read.split("\n").map(&:split)
             
             events.each do |event|
@@ -19,15 +20,10 @@ class ClarkApp < Sinatra::Base
             end
 
             @user_points = @container.list_user_points
-
-            byebug
         end
 
         slim :index
     end
-    
-    get "/", &action
-    post "/", &action
 end
 
 run ClarkApp.run!
