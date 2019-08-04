@@ -19,7 +19,12 @@ class ClarkApp < Sinatra::Base
                 EventProcessorService.call(event, @container)
             end
 
-            @user_points = @container.list_user_points
+            user_points = @container.users.inject([]) do |user_points, user|
+                user_points << [user.name, user.points] if user.points > 0
+                user_points
+            end
+
+            @user_points = Hash[user_points]
         end
 
         slim :index
