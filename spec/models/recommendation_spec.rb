@@ -3,7 +3,7 @@ require './spec/spec_helper'
 RSpec.describe Recommendation do
     
     it { should respond_to :created_at }
-    it { should respond_to :recommender }
+    it { should respond_to :recommender_name }
     it { should respond_to :recommendee_name }
     
     it 'should have created_at' do
@@ -12,10 +12,10 @@ RSpec.describe Recommendation do
         expect(recommendation.created_at).to eq(created_at)
     end
     
-    it 'should have recommender' do
-        recommender = User.new
-        recommendation = Recommendation.new(recommender: recommender)
-        expect(recommendation.recommender).to eq(recommender)
+    it 'should have recommender_name' do
+        recommender_name = Faker::Name.name
+        recommendation = Recommendation.new(recommender_name: recommender_name)
+        expect(recommendation.recommender_name).to eq(recommender_name)
     end
     
     it 'should have recommendee_name' do
