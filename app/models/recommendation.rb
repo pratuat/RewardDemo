@@ -1,10 +1,10 @@
 class Recommendation
     
-    attr_reader :recommender, :recommendee_name, :created_at
+    attr_reader :recommender_name, :recommendee_name, :created_at
     
     def initialize(**params)
         @created_at = params[:created_at]
-        @recommender = params[:recommender]
+        @recommender_name = params[:recommender_name]
         @recommendee_name = params[:recommendee_name]
     end
 end

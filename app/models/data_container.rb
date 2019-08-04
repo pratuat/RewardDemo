@@ -7,10 +7,15 @@ class DataContainer
     end
     
     def add_user(**user_params)
-        user = User.new(**user_params)
-        @users << user
-        
-        return user
+        unless find_user_by_name(user_params[:name])
+            recommendation = find_recommendation_for_user(user_params[:name])
+            user_params.merge!(recommender_name: recommendation.recommender_name) if recommendation
+            
+            user = User.new(**user_params)
+            @users << user
+            
+            return user
+        end
     end
 
     def find_user_by_name(name)
@@ -27,11 +32,11 @@ class DataContainer
     def find_recommendation_for_user(name)
         recommendations = @recommendations.find_all { |el| el.recommendee_name == name }
         
-        return recommendations.sort_by(&:created_at).first
+        return recommendations.sort_by(&:created_at).first if recommendations
     end
 
     def get_recommender(object)
-        return object&.recommender
+        find_user_by_name(object&.recommender_name) if object&.recommender_name
     end
     
     def add_points_to_user(user, points)

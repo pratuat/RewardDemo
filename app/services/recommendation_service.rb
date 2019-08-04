@@ -13,7 +13,7 @@ module RecommendationService
         recommendee_name = @event[RECOMENDEE_NAME_INDEX]
         
         @container.add_recommendation(
-            recommender: recommender,
+            recommender_name: recommender.name,
             recommendee_name: recommendee_name,
             created_at: event_date_time
         )
