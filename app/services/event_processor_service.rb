@@ -6,7 +6,7 @@ class EventProcessorService
     EVENT_TYPE_INDEX = 3
     
     PROCESSORS = {
-        "accepts" => 'UserCreationService',
+        "accepts" => 'UserService',
         "recommends" => 'RecommendationService'
     }
 

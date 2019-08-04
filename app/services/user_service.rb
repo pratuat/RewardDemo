@@ -1,4 +1,4 @@
-module UserCreationService
+module UserService
 
     USER_NAME_INDEX = 2
 
@@ -11,6 +11,8 @@ module UserCreationService
         if user && user&.recommender_name
             add_recommendation_points(@container.get_recommender(user), 0)
         end
+        
+        return user
     end
     
     def add_recommendation_points(user, k)
