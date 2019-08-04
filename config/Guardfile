@@ -1,7 +1,5 @@
 # More info at https://github.com/guard/guard#readme
 
-require 'byebug'
-
 directories %w(app config spec) \
  .select{|d| Dir.exist?(d) ? d : UI.warning("Directory #{d} does not exist")}
 
@@ -19,5 +17,4 @@ guard :rspec, cmd: "bundle exec rspec" do
   # Ruby files
   ruby = dsl.ruby
   dsl.watch_spec_files_for(ruby.lib_files)
-
 end
