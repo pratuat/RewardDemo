@@ -23,4 +23,5 @@ group :test do
   gem 'faker'
   gem 'rack-test'
   gem 'rspec'
+  gem 'nokogiri'
 end
