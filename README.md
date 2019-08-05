@@ -30,6 +30,15 @@ For additional options, use rack help command as
 $ bundle exec rackup --help
 ```
 
+#### 5. Test web service
+Two test files are made available under `spec/fixtures` which can be used to test the web application.
+
+#### 6. Running tests
+Run rspec test suite using following command.
+```
+$ bundle exec rspec spec
+```
+
 
 
 
