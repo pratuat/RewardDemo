@@ -23,7 +23,8 @@ class ClarkApp < Sinatra::Base
                 user_points << [user.name, user.points] if user.points > 0
                 user_points
             end
-
+            
+            @file_name = params[:file][:filename]
             @user_points = Hash[user_points]
         end
 
