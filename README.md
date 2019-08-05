@@ -24,7 +24,7 @@ $ bundle exec rackup clark_app.ru
 ```
 
 #### 4. Access web application in browser
-By default rack server runs application at port no. 4567. Go to link http://127.0.0.1:4567/ in your browser.
+By default rack runs application server at port 9292. Go to link http://127.0.0.1:9292/ in your browser.
 For additional options, use rack help command as
 ```
 $ bundle exec rackup --help
