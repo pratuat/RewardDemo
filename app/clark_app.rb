@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require './config/environment'
 
 class ClarkApp < Sinatra::Base
@@ -20,16 +18,10 @@ class ClarkApp < Sinatra::Base
         EventProcessorService.call(event, @container)
       end
 
-      user_points = @container.users.each_with_object([]) do |user, user_points|
-        user_points << [user.name, user.points] if user.points > 0
-      end
-
       @file_name = params[:file][:filename]
-      @user_points = Hash[user_points]
+      @user_points = @container.get_users_points
     end
 
     slim :index
   end
 end
-
-run ClarkApp.run!
