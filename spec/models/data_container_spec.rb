@@ -6,7 +6,7 @@ RSpec.describe DataContainer do
   it { should respond_to :users }
   it { should respond_to :recommendations }
 
-  let!(:user_a) { subject.add_user(name: 'A', created_at: DateTime.now) }
+  let!(:user_a) { subject.add_user(name: 'A', created_at: DateTime.now, points: 3) }
   let!(:recommendation_ba) do
     subject.add_recommendation(
       created_at: DateTime.now,
@@ -14,7 +14,7 @@ RSpec.describe DataContainer do
       recommendee_name: 'B'
     )
   end
-  let!(:user_b) { subject.add_user(name: 'B', created_at: DateTime.now, recommender_name: 'A') }
+  let!(:user_b) { subject.add_user(name: 'B', created_at: DateTime.now, recommender_name: 'A', points: 2) }
   let!(:recommendation_ca) do
     subject.add_recommendation(
       created_at: DateTime.now,
@@ -22,7 +22,7 @@ RSpec.describe DataContainer do
       recommendee_name: 'C'
     )
   end
-  let!(:user_c) { subject.add_user(name: 'C', created_at: DateTime.now, recommender_name: 'A') }
+  let!(:user_c) { subject.add_user(name: 'C', created_at: DateTime.now, recommender_name: 'A', points: 1) }
   let!(:recommendation_db) do
     subject.add_recommendation(
       created_at: DateTime.now,
@@ -59,12 +59,6 @@ RSpec.describe DataContainer do
   context '#recommendations' do
     it 'should return all users' do
       expect(subject.recommendations).to match_array(recommendations)
-    end
-  end
-
-  context '#list_user_points' do
-    pending('YTBD')
-    it 'should return user points' do
     end
   end
 
@@ -123,6 +117,12 @@ RSpec.describe DataContainer do
       user = subject.add_user(user_params_f.merge(points: x))
       subject.add_points_to_user(user, y)
       expect(user.points).to eq(z)
+    end
+  end
+  
+  context '#get_user_points' do
+    it 'should return user points' do
+      expect(subject.get_users_points).to eq({"A"=>3.0, "B"=>2.0, "C"=>1.0})
     end
   end
 end

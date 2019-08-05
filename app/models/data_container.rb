@@ -44,4 +44,12 @@ class DataContainer
   def add_points_to_user(user, points)
     user.increment_point(points)
   end
+  
+  def get_users_points
+    user_points = @users.each_with_object([]) do |user, user_points|
+      user_points << [user.name, user.points] if user.points > 0
+    end
+    
+    Hash[user_points]
+  end
 end
