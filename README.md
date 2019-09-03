@@ -1,4 +1,4 @@
-# CLARK REWARD
+# RewardDemo: A ruby/sinatra based demo reward point calculation application.
 
 ### **PROJECT SETUP**
 
