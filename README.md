@@ -1,4 +1,6 @@
-# RewardDemo: A ruby/sinatra based demo reward point calculation application.
+# Sinatra Demo
+
+## A ruby/sinatra based demo reward point calculation application.
 
 ### **PROJECT SETUP**
 
